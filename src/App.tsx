@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { RiMenu3Line, RiCloseLargeFill, RiDropboxFill } from "react-icons/ri";
+import { RiMenu3Line, RiCloseLargeFill } from "react-icons/ri";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Header } from "./components/Header/Header";
 import { Button } from "./components/Button/Button";
 import { Search } from "./components/Layout/Search";
+import { CardResults } from "./components/Layout/CardResults";
+import { jobs } from "./data/jobs";
 
 function App() {
   const [sidebar, setSidebar] = useState(false);
@@ -31,7 +33,7 @@ function App() {
           <Header></Header>
 
           {/* CONTENIDO */}
-          <main className="p-8">
+          <main className="p-8 lg:max-w-[1150px] mx-auto">
             {/* TITLE */}
             <div className="mb-8">
               <h1 className="text-3xl font-semibold text-gray-700">
@@ -63,28 +65,10 @@ function App() {
             </div>
 
             {/* CARD RESULTS */}
-            <div className="mt-4">
-              <div className="w-full bg-white p-8 rounded-lg shadow-xl">
-                <div className="">
-                  <RiDropboxFill></RiDropboxFill>
-                </div>
-
-                <div className="">
-                  <div className="">
-                    <h3 className="">UX Desiner</h3>
-                    <div className="">
-                      <span>Remoto</span>
-                      <span>Sketch</span>
-                    </div>
-                  </div>
-                  <div className="">
-                    <p>Dropbox</p>
-                    <p>Warszawa</p>
-                  </div>
-                </div>
-
-                <div className=""></div>
-              </div>
+            <div className="mt-8 flex flex-col gap-4">
+              {jobs.map(job => (
+                <CardResults key={job.id} job={job}></CardResults>
+              ))}
             </div>
           </main>
         </div>
